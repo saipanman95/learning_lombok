@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApplicationMonitor</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="scripts/script-indicator.js"></script>
+
+    <link rel='stylesheet' media='screen' href='webjars/bootstrap/css/bootstrap.min.css'>
+    <link rel="stylesheet" media="screen" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+<h1 class="home">Application Monitor</h1>
+<div class="dashboard-container">
+    <div class="quick-overview">
+        <h6>Quick Overview</h6>
+        <div class="box-container">
+            <div class="quick-overview box">
+                <h6>Problems</h6>
+                <div><a class="problem count" href="">0</a></div>
+            </div>
+            <div class="quick-overview box">
+                <h6>Applications</h6>
+                <div>
+                    <a class="problems" style="color: red;" href="">1</a>
+                    <span>/</span>
+                    <a class="count" href="" th:text="${endpointServiceCounts['PROD-Application-Endpoints']}">45</a>
+                </div>
+            </div>
+            <div class="quick-overview box">
+                <h6>Rabbit MQ - Queues</h6>
+                <div>
+                    <a class="problems" href="">0</a>
+                    <span>/</span>
+                    <a class="count" href="">2</a>
+                </div>
+            </div>
+            <div class="quick-overview box">
+                <h6>Databases</h6>
+                <div>
+                    <a class="problems" href="">0</a>
+                    <span>/</span>
+                    <a class="count" href="">3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="infrastructure">
+        <h6>Infrastructure - PROD</h6>
+        <div class="box-container">
+            <div class="infrastructure box">
+                <h6>Apache</h6>
+                <div>
+                    <a class="problems" style="color: red;" href="">1</a>
+                    <span>/</span>
+                    <a class="count" href="">12</a>
+                </div>
+            </div>
+            <div class="infrastructure box">
+                <h6>Tomcat</h6>
+                <div>
+                    <a class="problems" href="">0</a>
+                    <span>/</span>
+                    <a class="count" href="" th:text="${endpointServiceCounts['PROD-Tomcat-Instances']}">22</a>
+                </div>
+            </div>
+            <div class="infrastructure box">
+                <h6>Rabbit MQ</h6>
+                <div>
+                    <a class="problems" href="">0</a>
+                    <span>/</span>
+                    <a class="count" href="" th:text="${endpointServiceCounts['PROD-RabbitMQ-Endpoints']}">1</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

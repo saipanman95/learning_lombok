@@ -1,0 +1,113 @@
+:root {
+    --border-color: rgb(99, 99, 99);
+    --box-background-color: #494949;
+}
+@font-face {
+    font-family: roboto-slab-regular;
+    src: url(../fonts/roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: roboto-slab-bold;
+    src: url(../fonts/roboto/Roboto-Bold.ttf);
+}
+
+body {
+    font-family: roboto-slab-regular;
+    background-color: #131313;
+    color: whitesmoke;
+}
+.overallProblem {
+    background-color: red !important
+}
+.home {
+    padding: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: roboto-slab-regular;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+div.dashboard-container {
+    display: flex;
+}
+
+div.dashboard-container>div {
+    background-color: #333333;
+    margin: 10px;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+div.quick-overview {
+    flex: 40%;
+}
+
+div.infrastructure {
+    flex: 40%;
+}
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.box>h6 {
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.box {
+    background-color: var(--box-background-color);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    width: 200px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-shadow: 2px 2px 4px #000000;
+    flex-wrap: wrap;
+}
+.box h6 {
+    text-align: left;
+    padding-left: 5px;
+}
+.box h6::after{
+    content: url(../images/hr-line.png);
+    text-align: left;
+}
+.box div{
+    text-align: center;
+}
+.box>div>a:hover{
+    transition: 0.5s;
+    /* opacity: 0.5;  */
+    color: rgb(255, 230, 0) !important;
+    text-shadow:
+		-3px -3px 0 #000,
+		3px -3px 0 #000,
+		-3px 3px 0 #000,
+		3px 3px 0 #000;
+}
+.box>div>a.count {
+    font-size: 70px;
+    text-decoration: none;
+    color: white;
+    padding-left: 2px;
+}
+.box>div> a.problems, span{
+    font-size: 30px;
+    font-family: 'roboto-slab-bold';
+}
+.box>div>a.problems {
+    text-decoration: none;
+    color: white;
+    padding-right: 10px;
+}

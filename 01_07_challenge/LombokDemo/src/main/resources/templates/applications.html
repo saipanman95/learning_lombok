@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!-- Website Template by freewebsitetemplates.com -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CoMPTR CoNSTNG</title>
+    <link rel='stylesheet' media='screen' href='webjars/bootstrap/css/bootstrap.min.css'>
+    <link rel="stylesheet" media="screen" href="css/main.css">
+
+    <script type='text/javascript' src='webjars/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='webjars/bootstrap/js/bootstrap.min.js'></script>
+</head>
+<body>
+<div id="header">
+
+</div>
+<div id="container-fluid" class="container-fluid">
+    <div class="row">
+<script>
+        function getProbeLogs(probeKey){
+            $('#probe-logs').html("....loading logs...");
+            var url = "/probe-logs/"+ probeKey;
+            $('#probe-logs').load(url);
+        }
+</script>
+        <div class="col-md-3 card " th:each="entry, stats : ${appStatii}" th:with="appStat=${entry.value}">
+            <div class="card-body">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="text-center panel-title" th:text="${appStat.appDescription}">Banner General</h4>
+                    </div>
+                    <div class="text-center">
+                        <h12 class="label " th:classappend="${appStat.appStatus.status == 'DOWN' ? 'label-danger' : 'label-success'}" th:text="${appStat.appStatus.status} + ' - ' + ${appStat.appStatus.httpStatus}">UP</h12>
+                    </div>
+                    <div class="card">
+                        <div class="card-body card-body-padding">
+                            <h5>Hostname: <span th:text="${appStat.hostname}">hostname</span></h5>
+                            <h5>Tomcat Instance: <span th:text="${appStat.tomcatInstance}">tomcatInstance</span></h5>
+                            <button th:id="${'probeLog-'+appStat.appName+'-'+appStat.tomcatInstance}" th:attr="onclick=|getProbeLogs('${appStat.appName}' + '-' + '${appStat.tomcatInstance}')|" class="btn btn-outline-secondary btn-sm" type="button" data-toggle="modal" data-target="#myModal">View Logs</button>
+                            <a target="_blank" th:href="'/logFiles/'+${appStat.appName} + '-' + ${appStat.tomcatInstance}" class="btn btn-outline-secondary btn-sm" role="button" aria-pressed="true" >Download Logs</a>
+                            <h5>Retrieved: <span th:text="${appStat.lastRetrievedDt}">timestamp</span></h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade bd-example-modal-lg" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Probe Log Data</h4>
+                    </div>
+                    <div class="modal-body" id="probe-logs">
+                        <p>retrieving logs</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div>
+        <p th:title="'Profile: ' + ${environment}">
+            &copy Copyright 2023 | all rights reserved.
+        </p>
+    </div>
+</div>
+</body>
+</html>
